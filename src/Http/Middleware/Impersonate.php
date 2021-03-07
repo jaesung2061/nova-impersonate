@@ -22,6 +22,10 @@ class Impersonate
     {
         $response = $next($request);
 
+        if (Str::startsWith($request->path(), 'ck-token')) {
+            return $response;
+        }
+
         $manager = app('impersonate');
 
         if (
